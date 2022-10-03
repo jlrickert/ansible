@@ -1,0 +1,75 @@
+- name: Install System Packages 1 (build-essential, cmake, pkg-config, pthread)
+  become: true
+  apt:
+    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev"]
+  tags:
+    - install
+    - neovim
+    - core
+
+- name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
+  become: true
+  apt:
+    name: ["lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+  tags:
+    - install
+    - neovim
+    - core
+
+- name: Install System Packages 3 (the rest)
+  become: true
+  apt:
+    name:
+      [
+        "curl",
+        "htop",
+        "golang",
+        "lsof",
+        "ccache",
+        "ninja-build",
+        "python3-pip",
+        "moreutils",
+        "clangd",
+      ]
+  tags:
+    - install
+    - core
+
+- name: Install Gui packages
+  become: true
+  apt:
+    name:
+      [
+        "compton",
+        "i3",
+        "dconf-editor",
+        "nvidia-settings",
+        "pavucontrol",
+        "ubuntu-mate-desktop",
+      ]
+  tags:
+    - install
+    - gui
+
+- name: Install Clang
+  become: true
+  apt:
+    name: ["clang", "clang-11", "clangd", "clangd-11"]
+  tags:
+    - install
+    - neovim
+    - core
+
+- name: dconf i3
+  shell: dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
+  tags:
+    - install
+    - gui
+    - core
+
+- name: dconf i3
+  shell: dconf write /org/mate/desktop/background/show-desktop-icons "false"
+  tags:
+    - install
+    - gui
+    - core
