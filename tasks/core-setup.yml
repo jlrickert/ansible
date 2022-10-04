@@ -21,15 +21,17 @@
   apt:
     name:
       [
-        "curl",
-        "htop",
-        "golang",
-        "lsof",
         "ccache",
+        "clangd",
+        "curl",
+        "fzf",
+        "golang",
+        "htop",
+        "lsof",
+        "moreutils",
         "ninja-build",
         "python3-pip",
-        "moreutils",
-        "clangd",
+        "silversearcher-ag",
       ]
   tags:
     - install
@@ -42,7 +44,6 @@
       [
         "clip",
         "dconf-editor",
-        "fzf",
         "i3",
         "nvidia-settings",
         "pavucontrol",
