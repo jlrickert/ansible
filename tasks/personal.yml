@@ -1,0 +1,7 @@
+- name: Ensure personal directory exists
+  file:
+    dest: "{{ personal }}"
+    state: directory
+  tags:
+    - install
+    - personal
