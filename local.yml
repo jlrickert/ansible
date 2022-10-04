@@ -16,4 +16,6 @@
   tasks:
     - include: tasks/ssh.yml
     - include: tasks/core-setup.yml
+    - include: tasks/node-setup.yml
+    - include: tasks/npm-packages.yml
     - include: tasks/nvim-setup.yml
