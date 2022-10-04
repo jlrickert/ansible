@@ -40,12 +40,14 @@
   apt:
     name:
       [
-        "compton",
-        "i3",
+        "clip",
         "dconf-editor",
+        "fzf",
+        "i3",
         "nvidia-settings",
         "pavucontrol",
-        "ubuntu-mate-desktop",
+        "picom",
+        "wireshark",
       ]
   tags:
     - install
