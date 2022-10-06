@@ -6,11 +6,10 @@
     upngo: "{{ lookup('env', 'HOME') }}/upngo"
   tasks:
     - name: Install upngo ssh key
-      copy: 
+      copy:
         src: "{{ source_key }}"
         dest: "{{ dest_key }}"
         mode: 0600
-
 
     - name: Install ssh public key
       copy:
@@ -20,8 +19,8 @@
 
     - name: Ensure upngo directory exists
       file:
-      path: "{{ upngo }}"
-      state: directory
+        path: "{{ upngo }}"
+        state: directory
 
     - name: Authorize access to github
       known_hosts:
@@ -32,7 +31,6 @@
 
     - name: Checkout upngo-web
       git:
-        repo: git@github.com/jrickert-upngo/upngo-web.git
+        repo: git@github.com:jrickert-upngo/upngo-web.git
         update: no
         dest: "{{ upngo }}/upngo-web"
-
