@@ -1,7 +1,7 @@
 - name: Download nvm
   git:
     repo: "https://github.com/nvm-sh/nvm.git"
-    dest: "{{ lookup('env', 'HOME') }}/code/nvm"
+    dest: "{{ code }}/nvm"
   tags:
     - node
     - install

@@ -9,7 +9,7 @@
 - name: Clone Neovim
   git:
     repo: "https://github.com/neovim/neovim.git"
-    dest: "{{ lookup('env', 'HOME') }}/code/neovim"
+    dest: "{{ code }}/neovim"
     clone: yes
     force: yes
     version: v0.8.0
@@ -20,7 +20,7 @@
 - name: Build neovim
   shell: "make CMAKE_BUILD_TYPE=Release -j 8"
   args:
-    chdir: "{{ lookup('env', 'HOME') }}/code/neovim"
+    chdir: "{{ code }}/neovim"
     creates: build/bin/nvim
   tags:
     - install
@@ -30,7 +30,7 @@
   become: true
   shell: "make install"
   args:
-    chdir: "{{ lookup('env', 'HOME') }}/code/neovim"
+    chdir: "{{ code }}/neovim"
     creates: /usr/local/bin/nvim
   tags:
     - install
