@@ -11,8 +11,8 @@
   git:
     repo: "git@github.com:jlrickert/dotfiles.git"
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    update: no
     recursive: yes
-    update: yes
     accept_hostkey: yes
   register: dotfiles_res
   tags:
@@ -23,7 +23,7 @@
 - name: Install srcery theme for tmux
   git:
     repo: "https://github.com/srcery-colors/srcery-tmux.git"
-    dest: "{{ lookup('env', 'HOME') }}/.tmux/themes/srcery-tmux/srcery.tmux"
+    dest: "{{ lookup('env', 'HOME') }}/.tmux/themes/srcery-tmux"
 
 - name: Stow dotfiles
   shell: ./install.sh

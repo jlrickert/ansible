@@ -1,8 +1,10 @@
 - hosts: localhost
+  connection: local
   vars:
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     personal: "{{ lookup('env', 'HOME') }}/personal"
+    code: "{{ lookup('env', 'HOME') }}/code"
   pre_tasks:
     - name: Update Apt
       become: true
