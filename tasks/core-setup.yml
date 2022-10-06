@@ -42,7 +42,7 @@
   apt:
     name:
       [
-        "clip",
+        "xclip",
         "dconf-editor",
         "i3",
         "nvidia-settings",
