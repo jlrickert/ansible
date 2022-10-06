@@ -1,0 +1,24 @@
+- name: Setup sumneko lua lsp
+  git:
+    name: "https://github.com/sumneko/lua-language-server.git"
+    recursive: yes
+    dest: "{{ code }}/sumneko"
+  tags:
+    - install
+    - lsp
+
+- name: Build sumneko step 1
+  shell: ./compile/install.sh
+  args:
+    chdir: "{{ code }}/sumneko/3rd/luamake/"
+  tags:
+    - install
+    - lsp
+
+- name: Build sumneko step 2
+  shell: ./3rd/luamake/luamake rebuild
+  args:
+    chdir: "{{ code }}/sumneko"
+  tags:
+    - install
+    - lsp
