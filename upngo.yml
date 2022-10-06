@@ -1,0 +1,38 @@
+- hosts: localhost
+  connection: localhost
+  vars:
+    source_key: "./.ssh/id_rsa_jrickert"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa_jrickert"
+    upngo: "{{ lookup('env', 'HOME') }}/upngo"
+  tasks:
+    - name: Install upngo ssh key
+      copy: 
+        src: "{{ source_key }}"
+        dest: "{{ dest_key }}"
+        mode: 0600
+
+
+    - name: Install ssh public key
+      copy:
+        src: "{{ source_key }}.pub"
+        dest: "{{ dest_key }}.pub"
+        mode: 0644
+
+    - name: Ensure upngo directory exists
+      file:
+      path: "{{ upngo }}"
+      state: directory
+
+    - name: Authorize access to github
+      known_hosts:
+        name: github.com
+        key: github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6
+        path: ~/.ssh/known_hosts
+        state: present
+
+    - name: Checkout upngo-web
+      git:
+        repo: git@github.com/jrickert-upngo/upngo-web.git
+        update: no
+        dest: "{{ upngo }}/upngo-web"
+
