@@ -6,26 +6,11 @@
     - node
     - install
 
-- name: Install nvm for bash
-  blockinfile:
-    dest: "{{ lookup('env', 'HOME') }}/.bashrc"
-    content: |
-      export NVM_DIR="$HOME/code/nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    create: no
+- name: Install node 16.17.1
+  shell: nvm install 16.17.1
+  args:
+    creates: "{{ code }}/nvm/versions/node/v16.17.1/bin/node"
   tags:
     - node
     - install
-
-- name: Install nvm for zsh
-  blockinfile:
-    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
-    content: |
-      export NVM_DIR="$HOME/code/nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    create: no
-  tags:
-    - node
-    - install
+    
